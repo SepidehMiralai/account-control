@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to "Account control System", root_path, class:"navbar-brand" %> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+
+      <form class="form-inline my-2 my-lg-0">
+        <ul class="nav navbar-nav ml-auto">
+        <% if person_signed_in? || legal_person_signed_in? %>
+            
+
+          <div class="dropdown">
+            <a class="btn btn-info dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= (person_signed_in?) ? current_person.email : current_legal_person.email %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li> <%= link_to 'Manage Clock logs', root_url %> </li>
+              <% if person_signed_in? %>
+                <li> <%= link_to "Edit Profile", edit_person_registration_path, class: "nav_link" %> </li>
+                <li> <%= link_to "Sign Out", destroy_person_session_path, class: "nav_link", method: :delete %> </li>
+              <% else %>
+              <li> <%= link_to "Edit Profile", edit_legal_person_registration_path, class: "nav_link" %> </li>
+              <li> <%= link_to "Sign Out", destroy_legal_person_session_path, class: "nav_link", method: :delete %> </li>
+              <% end %>
+            </ul>    
+          </div>  
+        <% else %>
+          <li class="nav-item">
+            <%=link_to "Sign Up as real person", new_person_registration_path,  class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%=link_to "Sign Up as legal person", new_legal_person_registration_path,  class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%=link_to "Sign In as real person ", new_person_session_path,  class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%=link_to "Sign In as legal person ", new_legal_person_session_path,  class: "nav-link" %>
+          </li>
+        <% end %>        
+        </ul>
+      </form>
+    </div>
+  </nav>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
