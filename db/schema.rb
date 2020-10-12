@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_233313) do
+ActiveRecord::Schema.define(version: 2020_10_12_011153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 2020_10_11_233313) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "company_name"
+    t.string "fantasy_name"
+    t.string "federal_business_number"
     t.index ["email"], name: "index_legal_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_legal_people_on_reset_password_token", unique: true
   end
@@ -44,6 +47,9 @@ ActiveRecord::Schema.define(version: 2020_10_11_233313) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "full_name"
+    t.datetime "birth_date"
+    t.string "social_insurance_number"
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
   end
