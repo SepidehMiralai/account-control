@@ -14,20 +14,33 @@
   </thead>
 
   <tbody>
-    <% @accounts.each do |account| %>
+      
+    <% @accountable.accounts.each do |account| %>
       <tr>
         <td><%= account.name %></td>
         <td><%= account.balance %></td>
         <td><%= account.status %></td>
         <td><%= account.parent_id %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if person_signed_in? %>
+          <td><%= link_to 'View', account_path(account) %></td>
+          <td><%= link_to 'Edit', edit_account_path(account) %></td>
+          <td><%= link_to 'Destroy', account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><%= link_to 'Show', legal_person_account_path(account) %></td>
+          <td><%= link_to 'Edit', edit_legal_person_account_path(account) %></td>
+          <td><%= link_to 'Destroy', legal_person_account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>  
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+<% if person_signed_in? %>
+  <%= link_to 'New Account', new_person_account_path, class: "btn btn-link" %>
+<% else %>
+  <%= link_to 'New Account', new_legal_person_account_path, class: "btn btn-link" %>
+<% end %>
 
-<%= link_to 'New Account', new_account_path %>
+
+

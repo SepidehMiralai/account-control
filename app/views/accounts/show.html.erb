@@ -21,4 +21,10 @@
 </p>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<% if person_signed_in? %>
+  <%= link_to 'Back', person_accounts_path(@current_user) %>
+<% else %>
+  <%= link_to 'Back', legal_person_accounts_path(@current_user) %>
+<% end %>
+
+ 

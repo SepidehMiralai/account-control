@@ -18,11 +18,13 @@
               <%= (person_signed_in?) ? current_person.email : current_legal_person.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li> <%= link_to 'Manage Clock logs', root_url %> </li>
+              
               <% if person_signed_in? %>
+                <li> <%= link_to 'Manage accounts', person_accounts_path(current_person) %> </li>
                 <li> <%= link_to "Edit Profile", edit_person_registration_path, class: "nav_link" %> </li>
                 <li> <%= link_to "Sign Out", destroy_person_session_path, class: "nav_link", method: :delete %> </li>
               <% else %>
+              <li> <%= link_to 'Manage accounts', legal_person_accounts_path(current_legal_person) %> </li>
               <li> <%= link_to "Edit Profile", edit_legal_person_registration_path, class: "nav_link" %> </li>
               <li> <%= link_to "Sign Out", destroy_legal_person_session_path, class: "nav_link", method: :delete %> </li>
               <% end %>

@@ -1,6 +1,14 @@
-<h1>Editing Account</h1>
+<h2>Editing Account</h2>
 
-<%= render 'form', account: @account %>
+<%= render 'form2', account: @account %>
 
 <%= link_to 'Show', @account %> |
-<%= link_to 'Back', accounts_path %>
+
+<% if person_signed_in? %>
+  <%= link_to 'Back', person_accounts_path(@current_user) %>
+<% else %>
+  <%= link_to 'Back', legal_person_accounts_path(@current_user) %>
+<% end %>
+
+
+
