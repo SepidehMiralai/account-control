@@ -20,4 +20,5 @@ class Account < ApplicationRecord
   def has_children?
     children.exists?
   end
+
 end

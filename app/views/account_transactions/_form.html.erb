@@ -18,17 +18,12 @@
 
   <div class="field">
     <%= form.label :transaction_type %>
-    <%= form.text_field :transaction_type %>
+    <%= form.select :transaction_type, options_for_select([["Select one please", ""], "deposit", "contribute", "transaction"])  %>
   </div>
 
   <div class="field">
     <%= form.label :transaction_number %>
     <%= form.text_field :transaction_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :account_id %>
-    <%= form.text_field :account_id %>
   </div>
 
   <div class="actions">
