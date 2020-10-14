@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
+  
   devise_for :legal_people, path: 'legal_people', controllers: { sessions: "legal_people/sessions", registrations: "legal_people/registrations"} 
   shallow do 
     resources :legal_people do
-      resources :accounts
+      resources :accounts do 
+        resources :account_transactions
+      end
     end
   end
   
   devise_for :people, path: 'people', controllers: { sessions: "people/sessions", registrations: "people/registrations"} 
   shallow do
     resources :people do
-      resources :accounts
+      resources :accounts do
+        resources :account_transactions
+      end
     end 
   end
   

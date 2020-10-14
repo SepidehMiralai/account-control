@@ -21,16 +21,24 @@
         <td><%= account.balance %></td>
         <td><%= account.status %></td>
         <td><%= account.parent_id %></td>
-        <% if person_signed_in? %>
-          <td><%= link_to 'View', account_path(account) %></td>
-          <td><%= link_to 'Edit', edit_account_path(account) %></td>
-          <td><%= link_to 'Destroy', account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-          <td><%= link_to 'Show', legal_person_account_path(account) %></td>
-          <td><%= link_to 'Edit', edit_legal_person_account_path(account) %></td>
-          <td><%= link_to 'Destroy', legal_person_account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>  
-      </tr>
+        <td> 
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% if person_signed_in? %>
+              <li><%= link_to 'View', account_path(account) %></li>
+              <li><%= link_to 'Edit', edit_account_path(account) %></li>
+              <li><%= link_to 'Destroy', account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <li><%= link_to 'Transactions', account_account_transactions_path(account) %></li>
+            <% else %>
+              <li><%= link_to 'View', legal_person_account_path(account) %></li>
+              <li><%= link_to 'Edit', edit_legal_person_account_path(account) %></li>
+              <li><%= link_to 'Destroy', legal_person_account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <li><%= link_to 'Transactions', account_account_transactions_path(account) %></li>
+            <% end %>  
+        </tr>
     <% end %>
   </tbody>
 </table>
@@ -41,6 +49,8 @@
 <% else %>
   <%= link_to 'New Account', new_legal_person_account_path, class: "btn btn-link" %>
 <% end %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
 
