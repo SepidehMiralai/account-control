@@ -6,6 +6,6 @@
 5) For each account you can choose Action drop down list and view/edit/delete or perform transactions.
 6) If you choose transaction in previous step, you will be directed to the transaction lists of that account. You can create a new transaction in this page.
 7) If a transaction is of type "deposit" or "contribute" the accounts balance will be updated if it maintains the conditions mentioned in the project description.
-8) A rest api is provided in the backend for transactions
+
 
 
