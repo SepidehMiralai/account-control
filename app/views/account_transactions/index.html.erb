@@ -2,13 +2,12 @@
 
 <h2>Account Transactions</h2>
 
-<table>
+<table class= "table table-bordered">
   <thead>
     <tr>
       <th>Amount</th>
       <th>Transaction type</th>
       <th>Transaction number</th>
-      <th>Account</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,10 +18,18 @@
         <td><%= account_transaction.amount %></td>
         <td><%= account_transaction.transaction_type %></td>
         <td><%= account_transaction.transaction_number %></td>
-        <td><%= account_transaction.account_id %></td>
-        <td><%= link_to 'View', account_transaction_path(account_transaction) %></td>
-        <td><%= link_to 'Edit', edit_account_transaction_path(account_transaction) %></td>
-        <td><%= link_to 'Destroy', account_account_transactions_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li> <%= link_to 'View', account_transaction_path(account_transaction) %></li>
+              <li> <%= link_to 'Edit', edit_account_transaction_path(account_transaction) %></li>
+              <li><%= link_to 'Destroy', account_transaction_path(account_transaction), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -33,9 +33,10 @@ class AccountTransactionsController < ApplicationController
       if @account_transaction.save
         format.html { redirect_to @account_transaction, notice: 'Account transaction was successfully created.' }
         format.json { render :show, status: :created, location: @account_transaction }
-        if (@account_transaction.transaction_type == "deposit" && @account.has_parent? && @account.status==2) ||
+        if (@account_transaction.transaction_type == "deposit" && @account.has_parent? && @account.status=="active") ||
            (@account_transaction.transaction_type == "contribute" && !@account.has_parent?)
           update_balance
+        if (@account_transaction.transaction_type == "transfer")
         end
       else
         format.html { render :new }
@@ -76,7 +77,6 @@ class AccountTransactionsController < ApplicationController
     end
 
     def set_account
-      #  puts "****************#{@current_user.full_name}******************"
       @account = Account.find(params[:account_id])
     end
 

@@ -4,12 +4,12 @@ class AccountsController < ApplicationController
   
   # GET /accounts
   # GET /accounts.json
-  # def index
-  #   @accounts = @accountable.accounts.all
-  # end
-
+  
   # GET /accounts/1
   # GET /accounts/1.json
+  def index
+    @accounts = @accountable.accounts
+  end
 
   def show
   end
@@ -62,7 +62,7 @@ class AccountsController < ApplicationController
     @accounts = @accountable.accounts
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to @accounts, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

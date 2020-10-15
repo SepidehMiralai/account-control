@@ -20,6 +20,13 @@
   <%= @account_transaction.account_id %>
 </p>
 
+<% if @account_transaction.transaction_type=="transaction" %>
+  <%= form_for(@account) do |f| %>
+    <%= array=Account.where(id!= @account.id)
+    <%= f.collection_select :name, array, :id, :name %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_account_transaction_path(@account_transaction) %> 
 
 
