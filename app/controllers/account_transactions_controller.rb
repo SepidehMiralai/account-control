@@ -36,7 +36,9 @@ class AccountTransactionsController < ApplicationController
         if (@account_transaction.transaction_type == "deposit" && @account.has_parent? && @account.status=="active") ||
            (@account_transaction.transaction_type == "contribute" && !@account.has_parent?)
           update_balance
+        end
         if (@account_transaction.transaction_type == "transfer")
+          account_transfer
         end
       else
         format.html { render :new }
@@ -88,5 +90,9 @@ class AccountTransactionsController < ApplicationController
     def update_balance
       newBalance = @account_transaction.amount + @account.balance
       @account.update_attribute(:balance, newBalance)
+    end
+
+    def account_transfer
+
     end
 end
