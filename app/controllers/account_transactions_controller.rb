@@ -35,10 +35,17 @@ class AccountTransactionsController < ApplicationController
         format.json { render :show, status: :created, location: @account_transaction }
         if (@account_transaction.transaction_type == "deposit" && @account.has_parent? && @account.status=="active") ||
            (@account_transaction.transaction_type == "contribute" && !@account.has_parent?)
-          update_balance
+          # update_balance
+          TransactionServices::UpdateAccountBalanceService.new({
+          transaction_params: {
+            account_transaction: @account_transaction,
+            account: @account
+          }
+        }).execute
         end
+
         if (@account_transaction.transaction_type == "transfer")
-          account_transfer
+          
         end
       else
         format.html { render :new }
@@ -87,12 +94,9 @@ class AccountTransactionsController < ApplicationController
       params.require(:account_transaction).permit(:amount, :transaction_type, :transaction_number, :account_id)
     end
 
-    def update_balance
-      newBalance = @account_transaction.amount + @account.balance
-      @account.update_attribute(:balance, newBalance)
-    end
+    # def update_balance
+    #   newBalance = @account_transaction.amount + @account.balance
+    #   @account.update_attribute(:balance, newBalance)
+    # end
 
-    def account_transfer
-
-    end
 end
