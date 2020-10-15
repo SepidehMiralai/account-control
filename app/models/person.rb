@@ -4,4 +4,6 @@ class Person < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :accounts, as: :accountable
+
+  validates :full_name, :social_insurance_number, :birth_date, presence: true
 end

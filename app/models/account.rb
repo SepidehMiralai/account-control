@@ -6,6 +6,7 @@ class Account < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :balance, presence: true, numericality: true
+  validates :status, presence: true
 
 
   def parent_name
