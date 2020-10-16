@@ -1,4 +1,6 @@
 require './App/services/transaction_services/update_account_balance_service.rb'
+require './App/services/transaction_services/transfer_service.rb'
+
 class AccountTransactionsController < ApplicationController
   include Devise::Controllers::Helpers 
   before_action :set_account_transaction, only: [:show, :edit, :update, :destroy]
@@ -46,7 +48,17 @@ class AccountTransactionsController < ApplicationController
         end
 
         if (@account_transaction.transaction_type == "transfer")
-          
+          if (@account.balance >= @account_transaction.amount )
+            TransactionServices::TransferService.new({
+            transaction_params: {
+              account_transaction: @account_transaction,
+              account: @account,
+              current_user: @current_user
+            }
+          }).execute
+          else
+            flash[:error] = "transfer is not possible because transfer amount is more than account balance!"
+          end 
         end
       else
         format.html { render :new }

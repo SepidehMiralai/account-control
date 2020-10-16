@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_accountable, :set_current_user
+  before_action :set_accountable
   before_action :set_account, only: [:show, :edit, :update, :destroy]
   
   # GET /accounts
@@ -85,13 +85,13 @@ class AccountsController < ApplicationController
       end
     end
 
-    def set_current_user
-      if (legal_person_signed_in?)
-        @current_user = current_legal_person
-      elsif (person_signed_in?)
-        @current_user = current_person
-      end
-    end
+    # def set_current_user
+    #   if (legal_person_signed_in?)
+    #     @current_user = current_legal_person
+    #   elsif (person_signed_in?)
+    #     @current_user = current_person
+    #   end
+    # end
     
     # Only allow a list of trusted parameters through.
     def account_params
