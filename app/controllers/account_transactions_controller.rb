@@ -1,3 +1,4 @@
+require './App/services/transaction_services/update_account_balance_service.rb'
 class AccountTransactionsController < ApplicationController
   include Devise::Controllers::Helpers 
   before_action :set_account_transaction, only: [:show, :edit, :update, :destroy]
