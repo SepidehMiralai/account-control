@@ -84,14 +84,6 @@ class AccountsController < ApplicationController
         @type = "Person"
       end
     end
-
-    # def set_current_user
-    #   if (legal_person_signed_in?)
-    #     @current_user = current_legal_person
-    #   elsif (person_signed_in?)
-    #     @current_user = current_person
-    #   end
-    # end
     
     # Only allow a list of trusted parameters through.
     def account_params

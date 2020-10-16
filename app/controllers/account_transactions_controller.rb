@@ -107,9 +107,4 @@ class AccountTransactionsController < ApplicationController
       params.require(:account_transaction).permit(:amount, :transaction_type, :transaction_number, :account_id)
     end
 
-    # def update_balance
-    #   newBalance = @account_transaction.amount + @account.balance
-    #   @account.update_attribute(:balance, newBalance)
-    # end
-
 end
