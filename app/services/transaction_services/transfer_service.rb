@@ -3,7 +3,7 @@ module TransactionServices
     def initialize(params)
       @account_transaction  = params[:transaction_params][:account_transaction]
       @account = params[:transaction_params][:account]  
-      @current_user: params[:transaction_params][:current_user]  
+      @current_user = params[:transaction_params][:current_user]  
     end
 
     def execute
