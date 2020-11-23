@@ -1,10 +1,10 @@
 class AccountsController < ApplicationController
   before_action :set_accountable
   before_action :set_account, only: [:show, :edit, :update, :destroy]
-  
+
   # GET /accounts
   # GET /accounts.json
-  
+
   # GET /accounts/1
   # GET /accounts/1.json
   def index
@@ -21,13 +21,14 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1/edit
   def edit
-    
+
   end
 
   # POST /accounts
   # POST /accounts.json
   def create
     @account = @accountable.accounts.new account_params
+    @account.type = 'BranchAccount' unless @current_user.accounts.count.zero?
     @account.accountable_id = @current_user.id
     @account.accountable_type = @type
 
@@ -75,16 +76,16 @@ class AccountsController < ApplicationController
 
     def set_accountable
       if (legal_person_signed_in?)
-        # @accountable = LegalPerson.find(params[:legal_person_id]) 
+        # @accountable = LegalPerson.find(params[:legal_person_id])
         @accountable = current_legal_person
         @type = "LegalPerson"
       elsif (person_signed_in?)
-        # @accountable = Person.find(params[:person_id]) 
+        # @accountable = Person.find(params[:person_id])
         @accountable = current_person
         @type = "Person"
       end
     end
-    
+
     # Only allow a list of trusted parameters through.
     def account_params
       params.require(:account).permit(:name, :balance, :status, :parent_id, :accountable_id, :accountable_type)

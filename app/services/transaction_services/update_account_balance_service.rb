@@ -1,12 +1,12 @@
 module TransactionServices
-  class UpdateAccountBalanceService 
+  class UpdateAccountBalanceService
     def initialize(params)
-      @account_transaction  = params[:transaction_params][:account_transaction]
+      @transaction  = params[:transaction_params][:transaction]
       @account = params[:transaction_params][:account]
     end
 
     def execute
-      newBalance = @account_transaction.amount + @account.balance
+      newBalance = @transaction.amount + @account.balance
       @account.update_attribute(:balance, newBalance)
     end
 

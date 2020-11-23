@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_224253) do
+ActiveRecord::Schema.define(version: 2020_11_23_205008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_224253) do
     t.string "name"
     t.decimal "balance"
     t.integer "parent_id"
+    t.string "type", default: "Account"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "accountable_type", null: false
@@ -65,6 +66,16 @@ ActiveRecord::Schema.define(version: 2020_10_14_224253) do
     t.string "social_insurance_number"
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "type"
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.string "number"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "account_transactions", "accounts"

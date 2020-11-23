@@ -14,14 +14,14 @@
   </thead>
 
   <tbody>
-      
+
     <% @accountable.accounts.each do |account| %>
       <tr>
         <td><%= account.name %></td>
-        <td><%= account.balance %></td>
+        <td><%= number_to_currency account.balance_in_dollars %></td>
         <td><%= account.status %></td>
         <td><%= account.parent_name %></td>
-        <td> 
+        <td>
           <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Action
@@ -31,13 +31,13 @@
               <li><%= link_to 'View', account_path(account) %></li>
               <li><%= link_to 'Edit', edit_account_path(account) %></li>
               <li><%= link_to 'Destroy', account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-              <li><%= link_to 'Transactions', account_account_transactions_path(account) %></li>
+              <li><%= link_to 'Transactions', account_transactions_path(account) %></li>
             <% else %>
               <li><%= link_to 'View', legal_person_account_path(account) %></li>
               <li><%= link_to 'Edit', edit_legal_person_account_path(account) %></li>
               <li><%= link_to 'Destroy', legal_person_account_path(account), method: :delete, data: { confirm: 'Are you sure?' } %></li>
-              <li><%= link_to 'Transactions', account_account_transactions_path(account) %></li>
-            <% end %>  
+              <li><%= link_to 'Transactions', account_transactions_path(account) %></li>
+            <% end %>
         </tr>
     <% end %>
   </tbody>
@@ -51,6 +51,3 @@
 <% end %>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-

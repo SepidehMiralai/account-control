@@ -5,7 +5,7 @@ class CreateAccounts < ActiveRecord::Migration[6.0]
       t.decimal :balance
       t.integer :status
       t.integer :parent_id
-
+      t.string :type, default: "Account"
       t.timestamps
     end
   end
